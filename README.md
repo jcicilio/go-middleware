@@ -56,3 +56,10 @@ responsibility: add header Content-Type
 [Simple HTTP middleware with Go](https://hackernoon.com/simple-http-middleware-with-go-79a4ad62889b)
 
 [Gorilla Handlers](http://www.gorillatoolkit.org/pkg/handlers#LoggingHandler)
+
+
+https://hackernoon.com/simple-http-middleware-with-go-79a4ad62889b
+https://www.nicolasmerouze.com/middlewares-golang-best-practices-examples/
+
+best so far
+https://gowebexamples.com/advanced-middleware/
