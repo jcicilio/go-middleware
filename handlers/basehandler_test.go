@@ -1,10 +1,9 @@
-package main
+package handlers
 
 import (
 	"testing"
 	"net/http"
 	"net/http/httptest"
-
 )
 
 func TestBasehandler(t *testing.T) {

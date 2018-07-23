@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 	"fmt"
-	"encoding/json"
+	"go-middleware/handlers"
 )
 
 type Adapter func(http.Handler) http.Handler
@@ -18,21 +18,7 @@ func Compose(h http.Handler, adapters ...Adapter) http.Handler {
 	return h
 }
 
-func Basehandler() http.Handler {
-	return http.HandlerFunc(BasehandlerFunc)
-}
 
-func BasehandlerFunc(w http.ResponseWriter, r *http.Request) {
-	type timeval struct {
-		TimeValue int64 `json:"value"`
-	}
-
-	fmt.Println("...Before Basehandler")
-	v := timeval{time.Now().UnixNano()}
-	enc := json.NewEncoder(w)
-	enc.Encode(v)
-	fmt.Println("...After Basehandler")
-}
 
 // The HeadersMiddleware provides an example of adding headers during
 // the API run, including a correlation id, content-type and CORS headers.
@@ -72,10 +58,10 @@ func LoggingMiddleware() Adapter {
 
 
 func main() {
-	withHeaders := Compose(Basehandler(),HeadersMiddleware())
-	withHeadersAndLogging := Compose(Basehandler(),HeadersMiddleware(), LoggingMiddleware())
+	withHeaders := Compose(handlers.Basehandler(),HeadersMiddleware())
+	withHeadersAndLogging := Compose(handlers.Basehandler(),HeadersMiddleware(), LoggingMiddleware())
 
-	http.Handle("/",Basehandler())
+	http.Handle("/",handlers.Basehandler())
 	http.Handle("/withHeaders",withHeaders)
 	http.Handle("/withHeadersAndLogging",withHeadersAndLogging)
 
