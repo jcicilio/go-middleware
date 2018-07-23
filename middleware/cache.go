@@ -16,7 +16,7 @@ type CacheItem struct {
 var cache_map map[string]CacheItem
 var cache_channel = make(chan CacheItem )
 var mutex = &sync.Mutex{}
-const SECONDS_TO_CACHE = 5
+const SECONDS_TO_CACHE = 10
 
 func init() {
 	cache_map = make(map[string]CacheItem)
@@ -27,8 +27,8 @@ func init() {
 
 func cacheGc() {
 	for {
-		// Run every n seconds
-		time.Sleep(5)
+		// Run GC every n seconds
+		time.Sleep(1)
 
 		for k, v := range cache_map {
 			if time.Now().UnixNano() > v.timeout {
