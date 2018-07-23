@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"net/http"
 	"fmt"
 	"math/rand"
+	"net/http"
 	"time"
 )
 
@@ -11,6 +11,7 @@ import (
 // the API run, including a correlation id, content-type and CORS headers.
 func HeadersMiddleware() Adapter {
 	return func(h http.Handler) http.Handler {
+
 		fn := func(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("...Before HeadersMiddleware")
 			s1 := rand.NewSource(time.Now().UnixNano())
@@ -25,4 +26,3 @@ func HeadersMiddleware() Adapter {
 		return http.HandlerFunc(fn)
 	}
 }
-

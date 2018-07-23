@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"net/http"
-	"fmt"
-	"time"
 	"encoding/json"
+	"fmt"
+	"net/http"
+	"time"
 )
 
 func Basehandler() http.Handler {
