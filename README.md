@@ -49,19 +49,19 @@ func SomeHandler(h http.Handler) http.Handler {
 
 ### console logging
 
-responsibility:  log to console using [Apache Common Log Format `CLF`](http://httpd.apache.org/docs/2.2/logs.html#common)
-responsibility:  log start time
-responsibility:  log end time and duration
+- responsibility:  log to console using [Apache Common Log Format `CLF`](http://httpd.apache.org/docs/2.2/logs.html#common)
+- responsibility:  log start time
+- responsibility:  log end time and duration
 
 ### caching
 
-responsibility: cache by query URI
+- responsibility: cache by query URI
 
 ### cors, and common headers
 
-responsibility: add header correlation id
-responsibility: add header cors
-responsibility: add header Content-Type
+- responsibility: add header correlation id
+- responsibility: add header cors
+- responsibility: add header Content-Type
 
 
 ## references
