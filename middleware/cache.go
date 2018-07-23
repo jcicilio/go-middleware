@@ -48,7 +48,7 @@ func processCache(){
 		v := <-cache_channel
 
 		// Update the cache, with timeout n seconds ahead
-		v.timeout = time.Now().UnixNano() + (SECONDS_TO_CACHE * 100000000)
+		v.timeout = time.Now().UnixNano() + (SECONDS_TO_CACHE * 1000000000)
 		mutex.Lock()
 		fmt.Printf("...adding cache key: %s\n", v.Key)
 		cache_map[v.Key] = v
@@ -107,7 +107,7 @@ func CacheMiddleware() Adapter {
 				//stringToCache := string(c.r[:])
 				cache_channel <- CacheItem{Key: r.RequestURI, Value: c.r[:]}
 			}
-			
+
 			fmt.Println("...After CacheMiddleware")
 		}
 
