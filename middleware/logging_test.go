@@ -27,15 +27,4 @@ func TestLoggingMiddleware(t *testing.T) {
 			status, http.StatusOK)
 	}
 
-	/*	// Check for content-type header
-		if h := rr.Header().Get("Content-Type"); h != "application/json" {
-			t.Errorf("handler returned wrong status code: got %v want %v",
-				h, http.StatusOK)
-		}
-
-		// Check for CORS header
-		if h := rr.Header().Get("Access-Control-Allow-Origin"); h != "*" {
-			t.Errorf("handler returned wrong status code: got %v want %v",
-				h, http.StatusOK)
-		}*/
 }

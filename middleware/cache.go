@@ -13,13 +13,13 @@ type CacheItem struct {
 	timeout int64
 }
 
-var cache_map map[string]CacheItem
-var cache_channel = make(chan CacheItem )
+var cacheMap map[string]CacheItem
+var cacheChannel = make(chan CacheItem )
 var mutex = &sync.Mutex{}
-const SECONDS_TO_CACHE = 10
+const SecondsToCache = 10
 
 func init() {
-	cache_map = make(map[string]CacheItem)
+	cacheMap = make(map[string]CacheItem)
 	// start the cache gargage collector
 	go cacheGc()
 	go processCache()
@@ -30,10 +30,10 @@ func cacheGc() {
 		// Run GC every n seconds
 		time.Sleep(1)
 
-		for k, v := range cache_map {
+		for k, v := range cacheMap {
 			if time.Now().UnixNano() > v.timeout {
 				mutex.Lock()
-				delete(cache_map, k)
+				delete(cacheMap, k)
 				fmt.Printf("...deleting cache key: %s\n",k)
 				mutex.Unlock()
 			}
@@ -45,19 +45,19 @@ func processCache(){
 	for {
 		// Read the channel
 		// Update the cache
-		v := <-cache_channel
+		v := <-cacheChannel
 
 		// Update the cache, with timeout n seconds ahead
-		v.timeout = time.Now().UnixNano() + (SECONDS_TO_CACHE * 1000000000)
+		v.timeout = time.Now().UnixNano() + (SecondsToCache * 1000000000)
 		mutex.Lock()
 		fmt.Printf("...adding cache key: %s\n", v.Key)
-		cache_map[v.Key] = v
+		cacheMap[v.Key] = v
 		mutex.Unlock()
 	}
 }
 
 func GetCacheItem(k string)( bool, CacheItem){
-	if v, ok := cache_map[k]; ok {
+	if v, ok := cacheMap[k]; ok {
 		return true, v
 	}
 
@@ -105,7 +105,7 @@ func CacheMiddleware() Adapter {
 
 			exists, _ = GetCacheItem(r.RequestURI); if !exists {
 				//stringToCache := string(c.r[:])
-				cache_channel <- CacheItem{Key: r.RequestURI, Value: c.r[:]}
+				cacheChannel <- CacheItem{Key: r.RequestURI, Value: c.r[:]}
 			}
 
 			fmt.Println("...After CacheMiddleware")
