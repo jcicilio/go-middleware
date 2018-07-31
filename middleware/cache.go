@@ -1,21 +1,22 @@
 package middleware
 
 import (
-	"time"
-	"sync"
-	"net/http"
 	"fmt"
+	"net/http"
+	"sync"
+	"time"
 )
 
 type CacheItem struct {
-	Key string
+	Key     string
 	Value   []byte
 	timeout int64
 }
 
 var cacheMap map[string]CacheItem
-var cacheChannel = make(chan CacheItem )
+var cacheChannel = make(chan CacheItem)
 var mutex = &sync.Mutex{}
+
 const SecondsToCache = 10
 
 func init() {
@@ -34,14 +35,14 @@ func cacheGc() {
 			if time.Now().UnixNano() > v.timeout {
 				mutex.Lock()
 				delete(cacheMap, k)
-				fmt.Printf("...deleting cache key: %s\n",k)
+				fmt.Printf("...deleting cache key: %s\n", k)
 				mutex.Unlock()
 			}
 		}
 	}
 }
 
-func processCache(){
+func processCache() {
 	for {
 		// Read the channel
 		// Update the cache
@@ -56,7 +57,7 @@ func processCache(){
 	}
 }
 
-func GetCacheItem(k string)( bool, CacheItem){
+func GetCacheItem(k string) (bool, CacheItem) {
 	if v, ok := cacheMap[k]; ok {
 		return true, v
 	}
@@ -69,18 +70,16 @@ type cacheRecorder struct {
 	r []byte
 }
 
-func (rec *cacheRecorder) Write(b []byte)(int, error) {
+func (rec *cacheRecorder) Write(b []byte) (int, error) {
 	rec.r = b
 	return rec.ResponseWriter.Write(b)
 }
-
 
 func (rec *cacheRecorder) WriteHeader(code int) {
 	rec.ResponseWriter.WriteHeader(code)
 }
 
-
-func (rec *cacheRecorder) Header() http.Header{
+func (rec *cacheRecorder) Header() http.Header {
 	return rec.ResponseWriter.Header()
 }
 
@@ -91,7 +90,8 @@ func CacheMiddleware() Adapter {
 			fmt.Println("...Before CacheMiddleware")
 
 			// Check if item is in cache, if it is, then stream to output and return
-			exists, v := GetCacheItem(r.RequestURI); if exists {
+			exists, v := GetCacheItem(r.RequestURI)
+			if exists {
 				//enc := json.NewEncoder(w)
 				//enc.Encode(v.Value)
 				w.Write(v.Value)
@@ -102,9 +102,8 @@ func CacheMiddleware() Adapter {
 
 			h.ServeHTTP(&c, r)
 
-
-			exists, _ = GetCacheItem(r.RequestURI); if !exists {
-				//stringToCache := string(c.r[:])
+			exists, _ = GetCacheItem(r.RequestURI)
+			if !exists {
 				cacheChannel <- CacheItem{Key: r.RequestURI, Value: c.r[:]}
 			}
 
