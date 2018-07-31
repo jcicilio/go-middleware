@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
+	// build out different handlers
 	withHeaders := middleware.Compose(handlers.Basehandler(), middleware.HeadersMiddleware())
 	withHeadersAndLogging := middleware.Compose(handlers.Basehandler(), middleware.HeadersMiddleware(), middleware.LoggingMiddleware())
-	withCaching:= middleware.Compose(handlers.Basehandler(), middleware.CacheMiddleware())
+	withCaching := middleware.Compose(handlers.Basehandler(), middleware.CacheMiddleware())
 	withHeadersAndCaching := middleware.Compose(handlers.Basehandler(), middleware.HeadersMiddleware(), middleware.CacheMiddleware())
 
 	http.Handle("/", handlers.Basehandler())
