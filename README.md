@@ -63,6 +63,15 @@ func SomeHandler(h http.Handler) http.Handler {
 - responsibility: add header cors
 - responsibility: add header Content-Type
 
+## simple testing
+
+```
+go test -coverprofile=coverage.out
+go tool cover -html=coverage.out
+
+```
+
+
 
 ## references
 

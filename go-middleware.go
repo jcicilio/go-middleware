@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"go-middleware/handlers"
 	"go-middleware/middleware"
 	"net/http"
@@ -19,5 +20,6 @@ func main() {
 	http.Handle("/withCaching", withCaching)
 	http.Handle("/withHeadersAndCaching", withHeadersAndCaching)
 
+	fmt.Println("go-middleware started...")
 	http.ListenAndServe(":8080", nil)
 }
