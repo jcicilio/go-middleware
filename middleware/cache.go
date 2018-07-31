@@ -92,8 +92,6 @@ func CacheMiddleware() Adapter {
 			// Check if item is in cache, if it is, then stream to output and return
 			exists, v := GetCacheItem(r.RequestURI)
 			if exists {
-				//enc := json.NewEncoder(w)
-				//enc.Encode(v.Value)
 				w.Write(v.Value)
 				return
 			}
