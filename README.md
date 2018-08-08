@@ -66,8 +66,8 @@ func SomeHandler(h http.Handler) http.Handler {
 ## simple testing
 
 ```
-go test -coverprofile=coverage.out
-go tool cover -html=coverage.out
+go test -coverprofile=coverage
+go tool cover -html=coverage
 
 ```
 
