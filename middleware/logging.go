@@ -8,7 +8,7 @@ import (
 
 // LoggingMiddleware provides an example of before and after logging in an
 // API call stack, in this case providing duration of the call
-func LoggingMiddleware() Adapter {
+func LoggingMiddleware() Middleware {
 	return func(h http.Handler) http.Handler {
 
 		fn := func(w http.ResponseWriter, r *http.Request) {

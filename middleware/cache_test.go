@@ -10,7 +10,7 @@ import (
 )
 
 func TestCacheMiddleware(t *testing.T) {
-	req, err := http.NewRequest("GET", "/", nil)
+	req, err := http.NewRequest("GET", "/withCaching", nil)
 	if err != nil {
 		t.Fatal(err)
 	}

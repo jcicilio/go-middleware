@@ -9,7 +9,7 @@ import (
 
 // The HeadersMiddleware provides an example of adding headers during
 // the API run, including a correlation id, content-type and CORS headers.
-func HeadersMiddleware() Adapter {
+func HeadersMiddleware() Middleware {
 	return func(h http.Handler) http.Handler {
 
 		fn := func(w http.ResponseWriter, r *http.Request) {

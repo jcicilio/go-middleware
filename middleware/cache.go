@@ -100,7 +100,7 @@ func (rec *cacheRecorder) Header() http.Header {
 
 // returns an item from cache if found, otherwise
 // captures the response stream an caches it
-func CacheMiddleware() Adapter {
+func CacheMiddleware() Middleware {
 	return func(h http.Handler) http.Handler {
 
 		fn := func(w http.ResponseWriter, r *http.Request) {
