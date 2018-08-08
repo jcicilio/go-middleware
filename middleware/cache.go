@@ -19,6 +19,9 @@ var mutex = &sync.Mutex{}
 
 const SecondsToCache = 10
 
+// Responsible for initializing the cache map
+// Responseible for starting the garbage collector (expired cache items)
+// Responsible for starting the cache processor
 func init() {
 	cacheMap = make(map[string]CacheItem)
 	// start the cache gargage collector
@@ -26,6 +29,8 @@ func init() {
 	go processCache()
 }
 
+// Checks every second for cache entries that
+// have been deleted and then expires them.
 func cacheGc() {
 	for {
 		// Run GC every n seconds
@@ -42,6 +47,8 @@ func cacheGc() {
 	}
 }
 
+// Watches the cache channel and updates the cache as
+// new entries arrive at the channel
 func processCache() {
 	for {
 		// Read the channel
@@ -57,6 +64,7 @@ func processCache() {
 	}
 }
 
+// Returns a cache item
 func GetCacheItem(k string) (bool, CacheItem) {
 	if v, ok := cacheMap[k]; ok {
 		return true, v
@@ -65,24 +73,33 @@ func GetCacheItem(k string) (bool, CacheItem) {
 	return false, CacheItem{}
 }
 
+// A type used to implement the
+// response writer interface in order to be able
+// to capture bytes written to the client for
+// caching.
 type cacheRecorder struct {
 	http.ResponseWriter
 	r []byte
 }
 
+// response writer interface
 func (rec *cacheRecorder) Write(b []byte) (int, error) {
 	rec.r = b
 	return rec.ResponseWriter.Write(b)
 }
 
+// response writer interface
 func (rec *cacheRecorder) WriteHeader(code int) {
 	rec.ResponseWriter.WriteHeader(code)
 }
 
+// response writer interface
 func (rec *cacheRecorder) Header() http.Header {
 	return rec.ResponseWriter.Header()
 }
 
+// returns an item from cache if found, otherwise
+// captures the response stream an caches it
 func CacheMiddleware() Adapter {
 	return func(h http.Handler) http.Handler {
 

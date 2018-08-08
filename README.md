@@ -49,7 +49,7 @@ func SomeHandler(h http.Handler) http.Handler {
 
 ### console logging
 
-- responsibility:  log to console using [Apache Common Log Format `CLF`](http://httpd.apache.org/docs/2.2/logs.html#common)
+- responsibility:  log to response time to console
 - responsibility:  log start time
 - responsibility:  log end time and duration
 

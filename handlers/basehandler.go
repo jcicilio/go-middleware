@@ -16,6 +16,10 @@ func BasehandlerFunc(w http.ResponseWriter, r *http.Request) {
 		TimeValue int64 `json:"value"`
 	}
 
+
+	// Add 10 seconds delay just for demo purposes
+	// time.Sleep(10 * time.Millisecond)
+
 	fmt.Println("...Before Basehandler")
 	v := timeval{time.Now().UnixNano()}
 	enc := json.NewEncoder(w)

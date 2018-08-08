@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "ff37a502-6cf6-4d42-99f9-df1997b3734c",
+		"name": "Middleware Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "1b8db85f-2476-467d-8a9c-60cdbee6dc2f",
+			"name": "basehandler",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{serverport}}/",
+					"protocol": "http",
+					"host": [
+						"{{serverport}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d0cadc4f-3172-476d-8abb-a8d5f8eafa81",
+			"name": "withHeaders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{serverport}}/withHeaders",
+					"protocol": "http",
+					"host": [
+						"{{serverport}}"
+					],
+					"path": [
+						"withHeaders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "8f2c73ea-b260-427b-af4b-775b65154b41",
+			"name": "withHeadersAndLogging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{serverport}}/withHeadersAndLogging",
+					"protocol": "http",
+					"host": [
+						"{{serverport}}"
+					],
+					"path": [
+						"withHeadersAndLogging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "2d83facc-eeb3-43fe-b06b-b42013501914",
+			"name": "withCaching",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{serverport}}/withCaching",
+					"protocol": "http",
+					"host": [
+						"{{serverport}}"
+					],
+					"path": [
+						"withCaching"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "def2ceb4-5350-4467-b938-327cfd5a8d47",
+			"name": "withHeadersAndCaching",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{serverport}}/withHeadersAndCaching",
+					"protocol": "http",
+					"host": [
+						"{{serverport}}"
+					],
+					"path": [
+						"withHeadersAndCaching"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c7475550-3f35-45f1-b33a-cbe71ba2f166",
+			"name": "withAllDemoMiddleware",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{serverport}}/withAllDemoMiddleware",
+					"protocol": "http",
+					"host": [
+						"{{serverport}}"
+					],
+					"path": [
+						"withAllDemoMiddleware"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

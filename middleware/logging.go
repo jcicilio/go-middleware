@@ -16,10 +16,13 @@ func LoggingMiddleware() Adapter {
 			start := time.Now().UnixNano()
 			h.ServeHTTP(w, r)
 			end := time.Now().UnixNano()
-			fmt.Printf("...LoggingMiddleware, start-time: %d  end-time: %d duration(ns):%d\n", start, end, end-start)
+			fmt.Printf("start-time(ns): %d  end-time(ns): %d duration(ns):%d  \"%s %s\"\n", start, end,(end-start),r.Method, r.RequestURI)
 			fmt.Println("...After LoggingMiddleware")
 		}
 
 		return http.HandlerFunc(fn)
 	}
 }
+
+
+
