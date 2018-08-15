@@ -36,14 +36,14 @@ func cacheGc() {
 		// Run GC every n seconds
 		time.Sleep(1)
 
+		mutex.Lock()
 		for k, v := range cacheMap {
 			if time.Now().UnixNano() > v.timeout {
-				mutex.Lock()
 				delete(cacheMap, k)
 				fmt.Printf("...deleting cache key: %s\n", k)
-				mutex.Unlock()
 			}
 		}
+		mutex.Unlock()
 	}
 }
 
