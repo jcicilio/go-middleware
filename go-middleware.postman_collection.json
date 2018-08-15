@@ -1,23 +1,23 @@
 {
 	"info": {
-		"_postman_id": "ff37a502-6cf6-4d42-99f9-df1997b3734c",
-		"name": "Middleware Demo",
+		"_postman_id": "2f8378ef-c924-4201-8321-e8ce2aef20b1",
+		"name": "go-middleware",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "1b8db85f-2476-467d-8a9c-60cdbee6dc2f",
 			"name": "basehandler",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{serverport}}/",
+					"raw": "http://localhost:8080/",
 					"protocol": "http",
 					"host": [
-						"{{serverport}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						""
 					]
@@ -26,18 +26,32 @@
 			"response": []
 		},
 		{
-			"_postman_id": "d0cadc4f-3172-476d-8abb-a8d5f8eafa81",
 			"name": "withHeaders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebaff8c3-9a4d-41ab-adc2-7c3391be9f11",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{serverport}}/withHeaders",
+					"raw": "http://localhost:8080/withHeaders",
 					"protocol": "http",
 					"host": [
-						"{{serverport}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"withHeaders"
 					]
@@ -46,18 +60,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8f2c73ea-b260-427b-af4b-775b65154b41",
 			"name": "withHeadersAndLogging",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{serverport}}/withHeadersAndLogging",
+					"raw": "http://localhost:8080/withHeadersAndLogging",
 					"protocol": "http",
 					"host": [
-						"{{serverport}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"withHeadersAndLogging"
 					]
@@ -66,18 +80,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "2d83facc-eeb3-43fe-b06b-b42013501914",
 			"name": "withCaching",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{serverport}}/withCaching",
+					"raw": "http://localhost:8080/withCaching",
 					"protocol": "http",
 					"host": [
-						"{{serverport}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"withCaching"
 					]
@@ -86,18 +100,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "def2ceb4-5350-4467-b938-327cfd5a8d47",
 			"name": "withHeadersAndCaching",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{serverport}}/withHeadersAndCaching",
+					"raw": "http://localhost:8080/withHeadersAndCaching",
 					"protocol": "http",
 					"host": [
-						"{{serverport}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"withHeadersAndCaching"
 					]
@@ -106,18 +120,18 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c7475550-3f35-45f1-b33a-cbe71ba2f166",
 			"name": "withAllDemoMiddleware",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{serverport}}/withAllDemoMiddleware",
+					"raw": "http://localhost:8080/withAllDemoMiddleware",
 					"protocol": "http",
 					"host": [
-						"{{serverport}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"withAllDemoMiddleware"
 					]
