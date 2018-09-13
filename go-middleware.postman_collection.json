@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "2f8378ef-c924-4201-8321-e8ce2aef20b1",
+		"name": "go-middleware",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "basehandler",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withHeaders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebaff8c3-9a4d-41ab-adc2-7c3391be9f11",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/withHeaders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"withHeaders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withHeadersAndLogging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/withHeadersAndLogging",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"withHeadersAndLogging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withCaching",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/withCaching",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"withCaching"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withHeadersAndCaching",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/withHeadersAndCaching",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"withHeadersAndCaching"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withAllDemoMiddleware",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/withAllDemoMiddleware",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"withAllDemoMiddleware"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
